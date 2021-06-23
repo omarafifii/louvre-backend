@@ -2,7 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts":{"start" : "env-cmd -f ./.env nodemon src/app.js"},
+  "scripts": {
+    "start": "env-cmd -f ./.env nodemon src/app.js"
+  },
   "license": "MIT",
   "devDependencies": {
     "env-cmd": "^10.1.0",
@@ -14,6 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.9",
     "mongoose": "^5.12.14",
-    "validator": "^13.6.0"
+    "swagger-ui-express": "^4.1.6",
+    "validator": "^13.6.0",
+    "yamljs": "^0.3.0"
   }
 }
