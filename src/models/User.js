@@ -48,6 +48,7 @@ userSchema.methods.generateAuthToken = async function() {
     const token = jwt.sign(
     {
         _id: user._id,
+        username: user.username,
         role: user.role
     }, 
     process.env.JWT_KEY)
@@ -60,11 +61,11 @@ userSchema.statics.findByCredentials = async (username, password) => {
     // Search for a user by email and password.
     const user = await User.findOne({ username} )
     if (!user) {
-        throw new Error({ error: 'Invalid login credentials' })
+        throw new Error({ error: 'Invalid login credentials (Username does not exist)!' })
     }
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
-        throw new Error({ error: 'Invalid login credentials' })
+        throw new Error({ error: 'Invalid login credentials (Password does not match)!' })
     }
     return user
 }

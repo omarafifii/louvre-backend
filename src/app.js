@@ -6,11 +6,13 @@ const port = process.env.PORT
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const swaggerDocument = YAML.load('./swagger.yaml');
+var cors = require('cors')
 
 require('./db/db')
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(userRouter)
 app.use(artRouter)
