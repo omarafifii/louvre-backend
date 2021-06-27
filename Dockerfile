@@ -14,4 +14,5 @@ RUN yarn install
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "src/app.js" ]
+CMD [ "env-cmd", "-f", "./.env", "nodemon", "src/app.js" ]
+# CMD [ "node", "src/app.js" ]
