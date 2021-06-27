@@ -56,9 +56,9 @@ userSchema.methods.generateAuthToken = async function() {
     return token
 }
 
-userSchema.statics.findByCredentials = async (email, password) => {
+userSchema.statics.findByCredentials = async (username, password) => {
     // Search for a user by email and password.
-    const user = await User.findOne({ email} )
+    const user = await User.findOne({ username} )
     if (!user) {
         throw new Error({ error: 'Invalid login credentials' })
     }
@@ -67,6 +67,15 @@ userSchema.statics.findByCredentials = async (email, password) => {
         throw new Error({ error: 'Invalid login credentials' })
     }
     return user
+}
+
+userSchema.statics.getUsersPage = async (page_size, page_number) => {
+    // Get users in certain page.
+    const skip = (page_number - 1) * page_size;
+    console.log('test')
+    const users = await User.find({}).skip(skip).limit(page_size)
+    console.log('test2')
+    return users
 }
 
 const User = mongoose.model('User', userSchema)

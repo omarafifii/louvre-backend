@@ -1,16 +1,18 @@
 const express = require('express')
 const User = require('../models/User')
+const admin_auth = require('../middleware/admin_auth')
+const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-router.post('/users', async (req, res) => {
+router.post('/user', async (req, res) => {
     // Create a new user
     try {
         const user = new User(req.body)
         await user.save()
-        const token = await user.generateAuthToken()
+        // const token = await user.generateAuthToken()
         const message = { message: "User created successfully" }
-        res.status(201).send({ message, user})
+        res.status(201).send({ message })
     } catch (error) {
         res.status(400).send(error)
     }
@@ -19,8 +21,8 @@ router.post('/users', async (req, res) => {
 router.post('/login', async(req, res) => {
     //Login a registered user
     try {
-        const { email, password } = req.body
-        const user = await User.findByCredentials(email, password)
+        const { username, password } = req.body
+        const user = await User.findByCredentials(username, password)
         if (!user) {
             return res.status(401).send({error: 'Login failed! Check authentication credentials'})
         }
@@ -32,10 +34,20 @@ router.post('/login', async(req, res) => {
 
 })
 
-// router.get('/users/me', auth, async(req, res) => {
-//     // View logged in user profile
-//     res.send(req.user)
-// })
+router.get('/users', admin_auth, async (req, res) => {
+    // get all users in page
+    const page_size = parseInt(req.query.page_size)
+    const page_number = parseInt(req.query.page_number)
+
+    try {
+        const users = await User.getUsersPage(page_size, page_number)
+        const num_docs = await User.countDocuments()
+        const pages = Math.ceil(num_docs / page_size)
+        res.send({number_of_pages: pages, users})
+    } catch (error) {
+        res.status(500).send(error)
+    }
+})
 
 router.post('/user/logout', auth, async (req, res) => {
     // Log user out of the application
