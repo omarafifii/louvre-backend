@@ -6,10 +6,6 @@
     "start": "env-cmd -f ./.env nodemon src/app.js"
   },
   "license": "MIT",
-  "devDependencies": {
-    "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.7"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -19,6 +15,8 @@
     "mongoose": "^5.12.14",
     "swagger-ui-express": "^4.1.6",
     "validator": "^13.6.0",
-    "yamljs": "^0.3.0"
+    "yamljs": "^0.3.0",
+    "env-cmd": "^10.1.0",
+    "nodemon": "^2.0.7"
   }
 }
