@@ -1,7 +1,7 @@
 const express = require('express')
 const userRouter = require('./routes/user')
 const artRouter = require('./routes/art')
-const port = process.env.PORT
+const port = process.env.PORT || process.env.MY_PORT;
 
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
