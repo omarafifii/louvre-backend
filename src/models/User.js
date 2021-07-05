@@ -73,9 +73,9 @@ userSchema.statics.findByCredentials = async (username, password) => {
 userSchema.statics.getUsersPage = async (page_size, page_number) => {
     // Get users in certain page.
     const skip = (page_number - 1) * page_size;
-    console.log('test')
+    // console.log('test')
     const users = await User.find({}).skip(skip).limit(page_size)
-    console.log('test2')
+    // console.log('test2')
     return users
 }
 
