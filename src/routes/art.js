@@ -43,10 +43,11 @@ router.put('/art', admin_auth, async(req, res) => {
 
 })
 
-router.delete('/art', auth, async(req, res) => {
+router.delete('/art', admin_auth, async(req, res) => {
     // delete art
     try {
-        const art = await Art.findOneAndDelete ({_id:req.body._id})
+        // const art = await Art.findOneAndDelete ({_id:req.body._id})
+        const art = await Art.findOneAndDelete ({_id:req.query.id})
         res.send({message:'Art deleted successfully', art})
     } catch (error) {
         res.status(500).send(error)
