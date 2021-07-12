@@ -10,7 +10,6 @@ COPY package.json ./
 COPY yarn.lock ./
 
 RUN yarn install
-RUN yarn add env-cmd
 
 # Bundle app source
 COPY . .
