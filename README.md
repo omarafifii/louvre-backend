@@ -17,11 +17,12 @@ This is a mini online version of the Louvre museum in which guests
 
 ## Useful Links
 
-Deployment on Heroku: https://louvre-backend.herokuapp.com/
+Deployment: https://louvre-backend.omarafifi.com/
 
-Swagger API Docs: https://louvre-backend.herokuapp.com/api-docs/
+Swagger API Docs: https://louvre-backend.omarafifi.com/api-docs/
 
 Frontend Github: https://github.com/omarafifii/Louvre-frontend
+
 ## API Reference
 
 ### Public
